@@ -45,7 +45,8 @@ export default function Home() {
      
 
       // STEP 2: Update the UI from the Core
-
+      //a) Set values upon connection to the Core
+      //b) Listen for updates fro mthe Core
 
       // Reconnection Logic
     })();
@@ -58,7 +59,9 @@ export default function Home() {
   }, []);
 
   // STEP 3: Send Feedback from UI to the Core
-
+  //a) Create functions for sending UI updates to the Core
+  //b) Assign the functions to the UI elements
+  
   // The UI is rendered below.
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-10 p-6">
