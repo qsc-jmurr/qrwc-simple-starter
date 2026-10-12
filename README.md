@@ -165,20 +165,3 @@ How it works: QRWC waits 1 s, then 2, 4, 8, then 10 s between tries, up to 10 tr
 
 ---
 
-## Stuck?
-
-| You see | Try |
-|---|---|
-| `node -v` is below 22.5, or npm warns about `engines` | Install Node 24 LTS, then restart the terminal and VS Code. |
-| "running scripts is disabled on this system" | Use Git Bash as your terminal, or type `npm.cmd` instead of `npm`. |
-| "Couldn't connect" after about a minute | Check `CORE_IP`: just `ws://` and the IP, no path, not `wss://`. Check you're on the workshop Wi-Fi with no VPN, and that the design is running. |
-| `Authentication required` in the console | Access Control is on. Put the token in `API_KEY`. |
-| Connected, then `Cannot read properties of undefined (reading 'controls')` | The component isn't named exactly `Gain`, its Code Access isn't External, or the name in `componentFilter` doesn't match. |
-| A wall of ChangeGroup errors | You've left out `componentFilter`, so every control in the design is being polled. |
-| Page shows 0 dB until someone moves the fader | Step 2a is missing: read `.state` before listening for `"update"`. |
-| Everything appears twice in the console | Normal in development: React runs the setup twice to check the cleanup works. |
-| Still stuck | Run `node scripts/check-qrc.mjs <core-ip> [token]`. It tests the connection without the browser. |
-
-**No Core?** Run `npm run mock-core` in a second terminal and set `CORE_IP` to `"ws://localhost:8080"`. It's a small fake Core with a Gain, for practising only.
-
-The finished version is in the `qrwc-simple` folder if you want to compare.
