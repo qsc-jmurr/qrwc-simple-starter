@@ -8,9 +8,15 @@ import { Qrwc } from "@q-sys/qrwc";
 const CORE_IP = "ws://10.130.61.195";
 const API_KEY = "09f55593-85b1-42e5-8c24-2b7d6bb93bbd";
 
+type Design = ({
+  Gain: "gain" | "mute"
+})
+
+type QrwcInstance = Awaited<ReturnType<typeof Qrwc.createQrwc<Design>>>;
+
 export default function Home() {
   // Everything the page shows.
-  const [qrwc, setQrwc] = useState<Awaited<ReturnType<typeof Qrwc.createQrwc>>>();
+  const [qrwc, setQrwc] = useState<QrwcInstance>();
   const [status, setStatus] = useState("Connecting…");
   const [gain, setGain] = useState(0);
   const [gainLabel, setGainLabel] = useState("—");
@@ -21,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     let cancelled = false; // becomes true if the page closes while we're still connecting
-    let instance: Awaited<ReturnType<typeof Qrwc.createQrwc>>; // the connection, so the cleanup below can close it
+    let instance: QrwcInstance; // the connection, so the cleanup below can close it
 
     (async () => {
       // STEP 1: CONNECT
